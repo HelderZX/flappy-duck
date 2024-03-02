@@ -1,4 +1,4 @@
-
+hsp = global.vel;
 x -= hsp;
 
 if(collected){

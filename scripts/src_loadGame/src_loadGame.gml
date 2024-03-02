@@ -12,6 +12,7 @@ function scr_loadGame(){
 				global.record = _loadEntity.record;
 				global.coins = _loadEntity.coins;
 				global.skinSelected = _loadEntity.skin;
+				global.buyed = _loadEntity.buyed;
 			}
 		}
 		show_debug_message("Game Loaded!" + _string);

@@ -1,7 +1,7 @@
 
 image_speed = 0;
 grv = 0;
-jump = 4;
+jump = 3.5;
 vsp = 0;
 state = "soar"
 delay = 0;

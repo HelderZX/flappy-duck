@@ -7,6 +7,7 @@ function scr_saveGame(){
 			record : global.record,
 			coins : global.coins,
 			skin : global.skinSelected,
+			buyed : global.buyed,
 		}
 		array_push(_saveGame, _saveEntity);
 	}

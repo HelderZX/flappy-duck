@@ -1,4 +1,3 @@
-
 //Skin
 sprite_index = skins[skinId];
 
@@ -11,7 +10,7 @@ else{
 }
 
 //Jump
-if(space_key){
+if(space_key && state != "dead"){
 	delay = 0;
 	vsp = -(space_key * jump);
 }
@@ -26,6 +25,7 @@ if(vsp <= 0){
 else{
 	image_angle -= 2;
 }
+
 image_angle = clamp(image_angle, -10, 15) //limit tilt
 
 y += vsp;
@@ -33,12 +33,15 @@ y = clamp(y, 0 + sprite_height/2, room_height);
 delay++;
 
 //Die
-if(place_meeting(x, y, obj_trunk)){
-	if(global.points > global.record){
-		global.record = global.points;
+if(state != "dead"){
+	if(place_meeting(x, y, obj_trunk)){
+		if(global.points > global.record){
+			global.record = global.points;
+		}
+		scr_saveGame();
+		state = "dead";
+		src_screenShake(30, 2.5, 0.2);
 	}
-	scr_saveGame();
-	//game_restart();
 }
 
 //Points 
@@ -68,5 +71,9 @@ switch(state){
 	case "wings":
 		image_speed = 1;
 		if(image_index > image_number - 1) state = "soar";
+	break;
+	case "dead":
+		global.vel = lerp(global.vel, 0, 0.1);
+		global.playing = 0;
 	break;
 }
